@@ -1,0 +1,62 @@
+# Build Outputs
+build/
+build-*/
+bin/
+lib/
+out/
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+CMakeScripts/
+Testing/
+Makefile
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+CTestTestfile.cmake
+_deps/
+
+# Compile Outputs & Object Files
+*.o
+*.obj
+*.so
+*.dylib
+*.dll
+*.a
+*.lib
+*.exe
+*.out
+*.app
+
+# Debug Symbol
+*.dSYM/
+*.pdb
+*.ilk
+
+# Intermediate Files
+*.ll
+*.bc
+*.s
+
+# Editors
+# VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+# CLion / JetBrains
+.idea/
+cmake-build-*/
+# Visual Studio
+.vs/
+*.user
+*.suo
+# Others
+.clangd
+
+# OS Files
+.DS_Store
+Thumbs.db
