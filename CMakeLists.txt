@@ -8,8 +8,9 @@ set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-# LLVM
+# Libraries
 find_package(LLVM REQUIRED CONFIG)
+find_package(Z3 REQUIRED)
 
 message(STATUS "Found LLVM ${LLVM_PACKAGE_VERSION}")
 message(STATUS "Using LLVMConfig.cmake in: ${LLVM_DIR}")
@@ -22,6 +23,7 @@ add_executable(veritac
 
 target_include_directories(veritac PRIVATE
   ${LLVM_INCLUDE_DIRS}
+  z3::libz3
 )
 
 # LLVM MACROS
