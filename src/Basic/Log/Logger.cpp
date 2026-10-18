@@ -1,4 +1,3 @@
-#include <format>
 #include <iostream>
 #include <vector>
 #include <verita/Basic/Log/LogType.hpp>
