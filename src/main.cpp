@@ -1,19 +1,31 @@
-#include <memory>
-#include <print>
-#include <string>
-
-#include <llvm/IR/IRBuilder.h>
-#include <llvm/IR/LLVMContext.h>
-#include <llvm/IR/Module.h>
+#include <iostream>
+#include <span>
+#include <string_view>
+#include <vector>
+#include <verita/Basic/Log/Logger.hpp>
+#include <verita/Driver/Driver.hpp>
 
 int main(int argc, char *argv[]) {
-  std::println("Hello, Verita!");
-  std::string source = argc >= 2 ? argv[1] : "__VERITA_SOURCE_NOT_FOUND";
-  std::println("Source File: {}", source);
-  auto context = std::make_unique<llvm::LLVMContext>();
-  auto module = std::make_unique<llvm::Module>("verita_module", *context);
+  std::span<char *> raw_args(argv, argc);
 
-  module->print(llvm::outs(), nullptr);
+  std::vector<std::string_view> args;
+  args.reserve(raw_args.size());
+  for (char *arg : raw_args) {
+    args.emplace_back(arg);
+  }
 
+  verita::Logger::getInstance().report(verita::LogType::DEBUG, {"TEST_MSG"});
+  verita::Logger::getInstance().dump_logs();
+
+  try {
+    verita::Driver driver;
+    return driver.run(args);
+  } catch (const std::exception &e) {
+    std::cerr << "Fatal Error: " << e.what() << std::endl;
+    return 1;
+  } catch (...) {
+    std::cerr << "Unknown Fatal Error Occured." << std::endl;
+    return 1;
+  }
   return 0;
 }

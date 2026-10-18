@@ -19,9 +19,13 @@ link_directories(${LLVM_LIBRARY_DIRS})
 
 add_executable(veritac
   src/main.cpp
+  src/Driver/Driver.cpp
+  src/Basic/Log/LogType.cpp
+  src/Basic/Log/Logger.cpp
 )
 
 target_include_directories(veritac PRIVATE
+  include
   ${LLVM_INCLUDE_DIRS}
   z3::libz3
 )
